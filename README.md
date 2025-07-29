@@ -3,10 +3,8 @@
 
 This tool combines a basic packet sniffer with intrusion detection in one Python script.
 
-Functionality	                      Sniffer	        IDS
-Capture packets	                      ✅	          ✅
-Show POST data / creds	              ✅	          ❌
-Detect port scan / SYN flood	        ❌	          ✅
+## ⚠️ Disclaimer
+This tool is intended strictly for educational purposes on networks you own or are authorized to monitor. Unauthorized use may violate ethical and legal boundaries.
 
 
 
