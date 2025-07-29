@@ -17,14 +17,16 @@ Detect port scan / SYN flood	        ❌	          ✅
 - Detect SYN flood attacks
 - Print possible credentials in plain HTTP
 
+## Future Release:
+We can expand it with:
+- File logging / PCAP export
+- Email alerts or webhook (Discord, Slack)
+- GUI (with Tkinter or web dashboard)
+- ARP spoof detection
+
 ## 📦 Requirements
 
 ```bash
 pip install scapy
 
-**#Future Release:
-We can expand it with:
-- File logging / PCAP export
-- Email alerts or webhook (Discord, Slack)
-- GUI (with Tkinter or web dashboard)
-- ARP spoof detection**
+
