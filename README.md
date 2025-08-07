@@ -20,7 +20,6 @@ We can expand it with:
 - File logging / PCAP export
 - Email alerts or webhook (Discord, Slack)
 - GUI (with Tkinter or web dashboard)
-- ARP spoof detection
 
 ## 🔄 Update: ARP Spoof Detection & Logging (v2)
 This version introduces key enhancements:
