@@ -1,1 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Network Monitor</title>
+  <style>
+    body {
+      background-color: #0d0d0d;
+      color: #00ff00;
+      font-family: monospace;
+      padding: 20px;
+      overflow: hidden;
+    }
+    #console {
+      height: 85vh;
+      overflow-y: scroll;
+      border: 1px solid #00ff00;
+      padding: 10px;
+      background-color: #111;
+    }
+    .toast {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background-color: #ff0000;
+      color: white;
+      padding: 10px 20px;
+      border-radius: 5px;
+      box-shadow: 0 0 10px #ff0000;
+      z-index: 9999;
+      animation: fadeout 6s forwards;
+    }
+    @keyframes fadeout {
+      0% { opacity: 1; }
+      80% { opacity: 1; }
+      100% { opacity: 0; display: none; }
+    }
+  </style>
+</head>
+<body>
+  <h2>📡 Network Monitor Console</h2>
+  <div id="console"></div>
+
+  <script>
+    let lastLogLen = 0;
+    let seenAlerts = new Set();
+
+    function fetchLogs() {
+      fetch('/logs')
+        .then(res => res.json())
+        .then(data => {
+          const logs = data.logs;
+          if (logs.length > lastLogLen) {
+            const newLogs = logs.slice(lastLogLen);
+            const consoleDiv = document.getElementById('console');
+            newLogs.forEach(log => {
+              const line = document.createElement('div');
+              line.textContent = log;
+              consoleDiv.appendChild(line);
+            });
+            consoleDiv.scrollTop = consoleDiv.scrollHeight;
+            lastLogLen = logs.length;
+          }
+        });
+    }
+
+    function fetchAlerts() {
+      fetch('/alerts')
+        .then(res => res.json())
+        .then(data => {
+          const alerts = data.alerts;
+          alerts.forEach(alert => {
+            if (!seenAlerts.has(alert)) {
+              seenAlerts.add(alert);
+              const toast = document.createElement('div');
+              toast.className = 'toast';
+              toast.textContent = "⚠️ " + alert;
+              document.body.appendChild(toast);
+              setTimeout(() => toast.remove(), 6000);
+            }
+          });
+        });
+    }
+
+    setInterval(fetchLogs, 1000);
+    setInterval(fetchAlerts, 2000);
+  </script>
+</body>
+</html>
 
