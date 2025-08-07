@@ -1,40 +1,80 @@
-# Network_Monitor
-# Network Monitor: Packet Sniffer + IDS
+# 🛡️ Network Monitor: Packet Sniffer + Intrusion Detection (Web-Based)
 
-This tool combines a basic packet sniffer with intrusion detection in one Python script.
+This tool combines a real-time packet sniffer and basic intrusion detection system (IDS) into a Flask-powered browser interface.
+
+---
 
 ## ⚠️ Disclaimer
-This tool is intended strictly for educational purposes on networks you own or are authorized to monitor. Unauthorized use may violate ethical and legal boundaries.
 
+This tool is intended strictly for educational purposes on networks you own or are authorized to monitor.  
+**Do not run this on unauthorized networks** — misuse may be illegal.
 
+---
 
 ## 🚀 Features
 
-- Capture HTTP POST data (sniffer)
-- Detect port scanning
-- Detect SYN flood attacks
-- Print possible credentials in plain HTTP
+- 🌐 Web-based live dashboard (Flask + JS)
+- 📡 Real-time packet sniffing using Scapy
+- 🔍 Detects suspicious traffic:
+  - Access to Telnet ports (23, 2323)
+  - Traffic from blacklisted IPs
+- 🔔 Instant alert toasts in browser
+- 🧠 Logs full IP/TCP traffic
+- 🧪 Works locally, no external connections
+- ✅ Auto-launches browser on startup
 
-## Future Release:
-We can expand it with:
-- File logging / PCAP export
-- Email alerts or webhook (Discord, Slack)
-- GUI (with Tkinter or web dashboard)
+---
 
-## 🔄 Update: ARP Spoof Detection & Logging (v2)
-This version introduces key enhancements:
+## 🔄 Updates in Current Version
 
-🛡️ ARP Spoof Detection: Monitors ARP replies and detects changes in IP–MAC mappings to alert for spoofing attempts.
+### ✔️ TCP/IP Analysis + Web UI Integration
 
-📄 Alert Logging: All alerts (port scans, SYN floods, ARP spoofing, possible credentials) are now saved to a timestamped alerts.log file.
+- Captures live packets using Scapy
+- Logs source/destination IPs, protocol types, ports
+- Detects and displays alerts for suspicious patterns
+- Fully integrated with browser GUI
 
-⚙️ Refactored Alert System: Alerts are unified through a log_alert() function that handles console output and persistent logging.
+---
 
-These additions strengthen the tool's capability as a lightweight IDS.
+## 📦 Installation
 
-## 📦 Requirements
+Install required Python libraries:
 
 ```bash
-pip install scapy
+pip install -r requirements.txt
+```
+🪟 Windows Only: Install Npcap (Required for Scapy)
+📥 Download: https://nmap.org/npcap/
+
+✅ During installation, enable:
+
+✔ Install in WinPcap API-compatible Mode
+
+✔ Support raw 802.11 traffic
+
+## How To Run
+```
+python app.py
+
+```
+This will:
+
+✅ Start the Flask server
+
+✅ Open your default browser
+
+✅ Begin monitoring packets instantly
 
 
+## 💡 Planned Features
+✅ Export logs to file or CSV
+
+✅ Email / Slack / Discord webhook alerts
+
+## 👨‍💻 Built by Ashish B Sharma | Made with Flask + Scapy
+
+✅ Interface selector (Wi-Fi vs Ethernet)
+
+✅ Filter/sort by IP, port, timestamp
+
+✅ One-click .exe packaging
