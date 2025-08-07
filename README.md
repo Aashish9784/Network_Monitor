@@ -71,10 +71,12 @@ This will:
 
 ✅ Email / Slack / Discord webhook alerts
 
-## 👨‍💻 Built by Ashish B Sharma | Made with Flask + Scapy
-
 ✅ Interface selector (Wi-Fi vs Ethernet)
 
 ✅ Filter/sort by IP, port, timestamp
 
 ✅ One-click .exe packaging
+
+
+
+## 👨‍💻 Built by Ashish B Sharma | Made with Flask + Scapy
