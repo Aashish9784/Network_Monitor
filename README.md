@@ -18,7 +18,7 @@ This tool is intended strictly for educational purposes on networks you own or a
 - 🔍 Detects suspicious traffic:
   - Access to Telnet ports (23, 2323)
   - Traffic from blacklisted IPs
-- 🔔 Instant alert toasts in browser
+- 🔔 Instant alert toasts in browser with **timestamps**
 - 🧠 Logs full IP/TCP traffic
 - 🧪 Works locally, no external connections
 - ✅ Auto-launches browser on startup
@@ -27,10 +27,16 @@ This tool is intended strictly for educational purposes on networks you own or a
 
 ## 🔄 Updates in Current Version
 
+### ✔️ Structured Alerts with Timestamps
+
+- Alerts now include both **timestamp** and **message** for better clarity  
+- Frontend toast notifications display `[timestamp] message` format  
+- Backend remains lightweight while keeping real-time performance
+
 ### ✔️ TCP/IP Analysis + Web UI Integration
 
 - Captures live packets using Scapy
-- Logs source/destination IPs, protocol types, ports
+- Logs source/destination IPs, protocol types, and ports
 - Detects and displays alerts for suspicious patterns
 - Fully integrated with browser GUI
 
@@ -42,9 +48,11 @@ Install required Python libraries:
 
 ```bash
 pip install -r requirements.txt
+
 ```
+
 🪟 Windows Only: Install Npcap (Required for Scapy)
-📥 Download: https://nmap.org/npcap/
+📥 Download: Npcap Official Site
 
 ✅ During installation, enable:
 
@@ -52,10 +60,10 @@ pip install -r requirements.txt
 
 ✔ Support raw 802.11 traffic
 
-## How To Run
-```
-python app.py
+▶️ How To Run
 
+```bash
+python app.py
 ```
 This will:
 
@@ -65,8 +73,7 @@ This will:
 
 ✅ Begin monitoring packets instantly
 
-
-## 💡 Planned Features
+💡 Planned Features
 ✅ Export logs to file or CSV
 
 ✅ Email / Slack / Discord webhook alerts
@@ -77,6 +84,4 @@ This will:
 
 ✅ One-click .exe packaging
 
-
-
-## 👨‍💻 Built by Ashish B Sharma | Made with Flask + Scapy
+##👨‍💻 Built by Ashish B Sharma | Made with Flask + Scapy
