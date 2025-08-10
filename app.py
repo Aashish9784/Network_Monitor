@@ -2,7 +2,7 @@ import socket
 import threading
 import webbrowser
 from flask import Flask, render_template, jsonify
-from monitor.monitor import start_monitoring  # Make sure path is correct
+from monitor.monitor import start_monitoring
 import time
 
 app = Flask(__name__)
@@ -14,7 +14,11 @@ def log_callback(log):
     logs.append(log)
 
 def alert_callback(alert):
-    alerts.append(alert)
+    # Make sure alerts have both timestamp and message
+    alerts.append({
+        "timestamp": time.strftime("%Y-%m-%d %H:%M:%S"),
+        "message": alert
+    })
 
 def start_background_monitor():
     thread = threading.Thread(target=start_monitoring, args=(log_callback, alert_callback), daemon=True)
@@ -23,7 +27,6 @@ def start_background_monitor():
 def get_local_ip():
     s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
     try:
-        # Doesn't have to be reachable
         s.connect(("10.255.255.255", 1))
         IP = s.getsockname()[0]
     except Exception:
@@ -53,12 +56,8 @@ def get_alerts():
 
 if __name__ == '__main__':
     start_background_monitor()
-    
     host_ip = get_local_ip()
     port = find_free_port()
     url = f"http://{host_ip}:{port}/"
-
-    # Open the detected address in browser
     threading.Timer(1.5, lambda: webbrowser.open(url)).start()
     app.run(debug=False, host=host_ip, port=port)
-
