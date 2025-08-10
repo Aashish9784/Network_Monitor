@@ -68,13 +68,13 @@
       fetch('/alerts')
         .then(res => res.json())
         .then(data => {
-          const alerts = data.alerts;
-          alerts.forEach(alert => {
-            if (!seenAlerts.has(alert)) {
-              seenAlerts.add(alert);
+          data.alerts.forEach(alertObj => {
+            const alertKey = `${alertObj.timestamp}-${alertObj.message}`;
+            if (!seenAlerts.has(alertKey)) {
+              seenAlerts.add(alertKey);
               const toast = document.createElement('div');
               toast.className = 'toast';
-              toast.textContent = "⚠️ " + alert;
+              toast.textContent = `⚠️ [${alertObj.timestamp}] ${alertObj.message}`;
               document.body.appendChild(toast);
               setTimeout(() => toast.remove(), 6000);
             }
@@ -87,4 +87,3 @@
   </script>
 </body>
 </html>
-
